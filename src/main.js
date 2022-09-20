@@ -89,6 +89,7 @@ function computeState() {
         allowWIP: false,
         hostingByRequest: false,
         OCA_checkForUpdates: 'yes',
+        loginsPossible: true,
     };
     const ps = JSON.parse( window.localStorage.getItem('pfsc:iseState') || "{}" );
     const ss = window.pfsc_ISE_state || {};
@@ -108,7 +109,7 @@ function computeState() {
     iseUtil.assign(cs, [
         'autoSaveDelay', 'reloadFromDisk', 'saveAllOnAppBlur', 'enablePdfProxy',
         'offerPdfLibrary', 'appUrlPrefix', 'devMode', 'personalServerMode', 'ssnrAvailable',
-        'allowWIP', 'hostingByRequest',
+        'allowWIP', 'hostingByRequest', 'loginsPossible',
     ], [ss, ds]);
     // served only; default undefined:
     iseUtil.assign(cs, [

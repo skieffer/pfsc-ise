@@ -245,7 +245,7 @@ const MenuManager = declare(null, {
             label: "User",
             popup: this.logged_out_userMenu,
         });
-        if (!ISE_state.personalServerMode) {
+        if (ISE_state.loginsPossible && !ISE_state.personalServerMode) {
             this.rhMenuBar.addChild(this.userMenuPopup);
         }
 
