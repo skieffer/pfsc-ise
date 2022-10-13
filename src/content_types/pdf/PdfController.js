@@ -211,6 +211,10 @@ var PdfController = declare(null, {
                         for (let link of pbeLinks) {
                             link.setAttribute('href', pdfc.mgr.hub.aboutPbeUrl);
                         }
+                        const hostMentions = pdfc.needPbeDiv.querySelectorAll('.hostNeedingActivation');
+                        for (let mention of hostMentions) {
+                            mention.innerText = ` for ${window.location.host}`;
+                        }
 
                         pdfc.needPermissionDiv = cw.document.getElementById("needPermission");
                         pdfc.needPermissionDiv.querySelector('a').addEventListener('click', e => {
