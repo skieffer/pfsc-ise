@@ -126,7 +126,8 @@ var PdfManager = declare(null, {
      * return: promise that resolves when the content is loaded.
      */
     initContent: function(info, elt, pane) {
-        const url = this.hub.urlFor('static') + "/pdfjs/web/viewer.html?file="
+        const url = this.hub.pdfjsURL;
+        console.debug('Load pdfjs from:', url);
         const iframe = domConstruct.toDom(`
             <iframe
                 width="100%"

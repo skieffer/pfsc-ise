@@ -89,6 +89,8 @@ var Hub = declare(null, {
     prpoURL: null,
     prpoVersion: null,
 
+    pdfjsURL: null,
+
     agreementAcceptanceStorage: null,
     tosVersionAcceptedKey: 'pfsc:tosVersionAccepted',
     prpoVersionAcceptedKey: 'pfsc:prpoVersionAccepted',
@@ -542,6 +544,8 @@ var Hub = declare(null, {
         if (typeof(state.tosVersion) !== 'undefined') this.tosVersion = state.tosVersion;
         if (typeof(state.prpoURL) !== 'undefined') this.prpoURL = state.prpoURL;
         if (typeof(state.prpoVersion) !== 'undefined') this.prpoVersion = state.prpoVersion;
+
+        if (typeof(state.pdfjsURL) !== 'undefined') this.pdfjsURL = state.pdfjsURL;
 
         if (typeof(state.theme) !== 'undefined') this.setTheme(state.theme);
         if (typeof(state.zoom) !== 'undefined') this.setZoom(state.zoom);

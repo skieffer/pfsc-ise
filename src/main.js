@@ -115,6 +115,7 @@ function computeState() {
     iseUtil.assign(cs, [
         'noSocket', 'CSRF', 'OCA_version',
         'tosURL', 'tosVersion', 'prpoURL', 'prpoVersion',
+        'pdfjsURL',
     ], [ss]);
     // no default here, so just ss > ps, or else undefined:
     iseUtil.assign(cs, ['sidebar', 'trees', 'content'], [ss, ps]);
