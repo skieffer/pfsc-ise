@@ -213,7 +213,7 @@ var PdfController = declare(null, {
                         }
                         const hostMentions = pdfc.needPbeDiv.querySelectorAll('.hostNeedingActivation');
                         for (let mention of hostMentions) {
-                            mention.innerText = ` for ${window.location.host}`;
+                            mention.innerText = ` for ${window.location.host}${window.location.pathname}`;
                         }
 
                         pdfc.needPermissionDiv = cw.document.getElementById("needPermission");
