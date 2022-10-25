@@ -61,16 +61,28 @@ function startup(args) {
         code += `${imp}\n`;
     }
 
+    // Final expression makes the return value.
+    // (See https://pyodide.org/en/stable/usage/api/js-api.html#pyodide.runPythonAsync)
+    // We grab info about the installed packages.
+    code += '{k:vars(v) for k, v in micropip.list().items()}\n';
+
     console.debug(code);
 
     self.pyoReady = new Promise(resolve => {
         loadPyodide({indexURL: indexURL}).then(pyodide => {
             self.pyodide = pyodide;
             pyodide.loadPackage(pyodidePackages).then(() => {
-                pyodide.runPythonAsync(code).then(() => {
+                pyodide.runPythonAsync(code).then(pkginfoProxy => {
+                    const pkginfo = pkginfoProxy.toJs();
+                    pkginfoProxy.destroy();
                     resolve({
                         status: 0,
                         message: 'loaded Pyodide and all packages',
+                        // Up to v0.21.2, it's pyodide.version. In v0.21.3, it's pyodide.default.
+                        pyodideVersion: pyodide.default || pyodide.version,
+                        // pkginfo is a Map, in which package names point to Maps, in which
+                        // the keys are 'name', 'version', and 'source'.
+                        pkginfo: pkginfo,
                     });
                 });
             });

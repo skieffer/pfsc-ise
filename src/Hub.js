@@ -76,6 +76,7 @@ var Hub = declare(null, {
     dismissalStorage: null,
     mathWorkerPeer: null,
     mathWorkerReady: null,
+    pyodidePackageInfo: null,
     aboutPbeUrl: 'https://proofscape.org/download/pbe.html',
     bugReportUrl: 'https://github.com/proofscape/pfsc-ise/issues',
     ocaUpgradeUrl: 'https://proofscape.org/pise/running_the_ise/basic.html#upgrading',
@@ -280,6 +281,7 @@ var Hub = declare(null, {
             }
             this.mathWorkerPeer = info.peer;
             console.log('Math worker startup:', info.result);
+            this.pyodidePackageInfo = info.result.pkginfo;
             document.querySelector('body').classList.add('pyodideLoaded');
         });
     },
