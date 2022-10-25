@@ -67,7 +67,6 @@ define([
     iseUtil
 ) {
 
-const PFSC_ISE_VERSION = '0.1.0'
 
 function computeState() {
     // The "computed state" (cs) will be a function of three inputs, which we call
@@ -129,7 +128,7 @@ function construct(ISE_state) {
     const homeId = "appLayout";
     homeDiv.setAttribute('id', homeId);
     homeDiv.classList.add("pfsc-ise");
-    homeDiv.setAttribute('data-proofscape-ise-vers', PFSC_ISE_VERSION);
+    homeDiv.setAttribute('data-proofscape-ise-vers', PISE_VERSION);
     document.body.appendChild(homeDiv);
 
     // The AppLayout constructs the basic layout elements for the app.
