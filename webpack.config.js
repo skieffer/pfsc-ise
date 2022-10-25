@@ -23,6 +23,9 @@ const DojoWebpackPlugin = require('dojo-webpack-plugin');
 module.exports = env => {
     const devmode = !!(env||{}).dev;
     const releaseMode = !!(env||{}).rel;
+
+    const packageLock = require(`./package-lock.json`);
+
     return {
         entry: {
             ise: './src/main.js',
@@ -52,6 +55,8 @@ module.exports = env => {
             new webpack.DefinePlugin({
                 // See https://stackoverflow.com/a/29252400
                 PISE_VERSION: JSON.stringify(process.env.npm_package_version),
+                MATHJAX_VERSION: JSON.stringify(packageLock.dependencies["mathjax"].version),
+                ELKJS_VERSION: JSON.stringify(packageLock.dependencies["elkjs"].version),
             }),
             new DojoWebpackPlugin({
                 loaderConfig: function(env) {

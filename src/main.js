@@ -67,6 +67,15 @@ define([
     iseUtil
 ) {
 
+async function loadScripts() {
+    const urlTemplates = window.pfsc_other_scripts;
+
+    const mathjaxUrl = urlTemplates.mathjax.replaceAll("VERSION", MATHJAX_VERSION);
+    await iseUtil.loadScript(mathjaxUrl);
+
+    const elkjsUrl = urlTemplates.elkjs.replaceAll("VERSION", ELKJS_VERSION);
+    await iseUtil.loadScript(elkjsUrl);
+}
 
 function computeState() {
     // The "computed state" (cs) will be a function of three inputs, which we call
@@ -220,7 +229,8 @@ function construct(ISE_state) {
     return hub;
 }
 
-function startup() {
+async function startup() {
+    await loadScripts();
     const ISE_state = computeState();
     const hub = construct(ISE_state);
     hub.restoreState(ISE_state);
