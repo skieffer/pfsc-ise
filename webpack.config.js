@@ -24,7 +24,7 @@ module.exports = env => {
     const devmode = !!(env||{}).dev;
     const releaseMode = !!(env||{}).rel;
 
-    const packageLock = require(`./package-lock.json`);
+    const packageLock = require('./package-lock.json');
 
     return {
         entry: {
