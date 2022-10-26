@@ -565,7 +565,7 @@ var Hub = declare(null, {
         if (typeof(state.prpoURL) !== 'undefined') this.prpoURL = state.prpoURL;
         if (typeof(state.prpoVersion) !== 'undefined') this.prpoVersion = state.prpoVersion;
 
-        if (typeof(state.pdfjsURL) !== 'undefined') this.pdfjsURL = state.pdfjsURL;
+        if (typeof(state.pdfjsURL) !== 'undefined') this.pdfjsURL = state.pdfjsURL.replaceAll("VERSION", otherVersions["pfsc-pdf"]);
 
         if (typeof(state.theme) !== 'undefined') this.setTheme(state.theme);
         if (typeof(state.zoom) !== 'undefined') this.setZoom(state.zoom);
