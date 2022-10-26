@@ -19,6 +19,7 @@
 import { xhr, enrichXhrParams } from "browser-peers/src/util";
 import { DedicatedWorkerPeer } from "browser-peers/src/dedworkerpeer";
 import { ContentLoadTask } from "./delayed";
+const otherVersions = require('../other-versions.json');
 
 
 define([
@@ -248,11 +249,28 @@ var Hub = declare(null, {
      */
     startupNewMathWorker: function() {
         const conf = window.pfsc_examp_config;
+
+        conf.pyodideIndexURL = conf.pyodideIndexURL.replaceAll("VERSION", otherVersions.pyodide);
+
+        const mitArray = [];
+        for (let pkg in conf.micropipInstallTargets) {
+            if (conf.micropipInstallTargets.hasOwnProperty(pkg)) {
+                let url = conf.micropipInstallTargets[pkg];
+                url = url.replaceAll("VERSION", otherVersions[pkg]);
+                conf.micropipInstallTargets[pkg] = url;
+                mitArray.push(url);
+            }
+        }
+        conf.micropipInstallTargetsArray = mitArray;
+
+        console.debug('filled pfsc_examp_config', conf);
+
         const mathWorker = new Worker(conf.mathworkerURL);
         const peer = new DedicatedWorkerPeer(mathWorker);
+
         return peer.postRequest('startup', {
             pyodideIndexURL: conf.pyodideIndexURL,
-            micropipInstallTargets: conf.micropipInstallTargets,
+            micropipInstallTargetsArray: conf.micropipInstallTargetsArray,
             micropipNoDeps: conf.micropipNoDeps,
             pfscExampConfig: conf.vars,
         }, {doReadyCheck: true}).then(resp => {

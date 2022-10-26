@@ -55,7 +55,7 @@ function startup(args) {
     let code = 'import micropip\n';
 
     const noDeps = args.micropipNoDeps ? ', deps=False' : '';
-    code += `await micropip.install(${JSON.stringify(args.micropipInstallTargets)}${noDeps})\n`;
+    code += `await micropip.install(${JSON.stringify(args.micropipInstallTargetsArray)}${noDeps})\n`;
 
     for (let imp of pyodideImports) {
         code += `${imp}\n`;
