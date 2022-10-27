@@ -16,6 +16,7 @@
  *  limitations under the License.                                           *
  * ------------------------------------------------------------------------- */
 
+const path = require("path");
 const webpack = require('webpack');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DojoWebpackPlugin = require('dojo-webpack-plugin');
@@ -49,6 +50,14 @@ module.exports = env => {
                     test: /\.(png|gif|ico)$/,
                     type: 'asset/inline',
                 },
+                {
+                    test: /piseAboutDialogContents.js$/,
+                    use: [
+                        {
+                            loader: path.resolve('genabout.js')
+                        }
+                    ]
+                }
             ]
         },
         plugins: [
