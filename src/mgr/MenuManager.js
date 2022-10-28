@@ -16,7 +16,7 @@
  *  limitations under the License.                                           *
  * ------------------------------------------------------------------------- */
 
-import { softwareTableRows } from "../about";
+import { softwareTableRows } from "../piseAboutDialogContents";
 
 define([
     "dojo/_base/declare",

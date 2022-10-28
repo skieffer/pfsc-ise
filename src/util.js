@@ -695,6 +695,21 @@ util.setCookie = function(cname, val, numDays) {
 }
 
 util.deleteCookie = function(cname) { util.setCookie(cname, '', -1); }
+
+/* Load a script by its URL.
+ * Return a promise that resolves after the script has finished loading.
+ */
+util.loadScript = function(url) {
+    return new Promise(resolve => {
+        const s = document.createElement('script');
+        s.src = url;
+        s.type = "text/javascript";
+        s.onload = resolve;
+        s.onreadystatechange = resolve;
+        document.querySelector('head').appendChild(s);
+    });
+};
+
 // ---------------------------------------------------------------------------
 
 return util;

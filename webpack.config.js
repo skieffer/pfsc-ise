@@ -16,6 +16,7 @@
  *  limitations under the License.                                           *
  * ------------------------------------------------------------------------- */
 
+const path = require("path");
 const webpack = require('webpack');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const DojoWebpackPlugin = require('dojo-webpack-plugin');
@@ -23,6 +24,9 @@ const DojoWebpackPlugin = require('dojo-webpack-plugin');
 module.exports = env => {
     const devmode = !!(env||{}).dev;
     const releaseMode = !!(env||{}).rel;
+
+    const packageLock = require('./package-lock.json');
+
     return {
         entry: {
             ise: './src/main.js',
@@ -46,12 +50,22 @@ module.exports = env => {
                     test: /\.(png|gif|ico)$/,
                     type: 'asset/inline',
                 },
+                {
+                    test: /piseAboutDialogContents.js$/,
+                    use: [
+                        {
+                            loader: path.resolve('genabout.js')
+                        }
+                    ]
+                }
             ]
         },
         plugins: [
             new webpack.DefinePlugin({
                 // See https://stackoverflow.com/a/29252400
                 PISE_VERSION: JSON.stringify(process.env.npm_package_version),
+                MATHJAX_VERSION: JSON.stringify(packageLock.dependencies["mathjax"].version),
+                ELKJS_VERSION: JSON.stringify(packageLock.dependencies["elkjs"].version),
             }),
             new DojoWebpackPlugin({
                 loaderConfig: function(env) {
