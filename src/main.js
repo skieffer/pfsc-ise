@@ -230,10 +230,11 @@ function construct(ISE_state) {
 }
 
 async function startup() {
-    await loadScripts();
     const ISE_state = computeState();
     const hub = construct(ISE_state);
-    hub.restoreState(ISE_state);
+    hub.restoreSettings(ISE_state);
+    await loadScripts();
+    hub.restoreContent(ISE_state);
     hub.showCookieNoticeAsNeeded();
     hub.finalSetup();
 }

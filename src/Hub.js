@@ -545,10 +545,7 @@ var Hub = declare(null, {
         window.localStorage.setItem('pfsc:iseState', JSON.stringify(state));
     },
 
-    /* Given a state description object of the kind returned by our
-     * `describeState` method, restore that state.
-     */
-    restoreState: function(state) {
+    restoreSettings: function(state) {
         if (typeof(state.CSRF) !== 'undefined') this.csrf_token = state.CSRF;
         if (typeof(state.appUrlPrefix) !== 'undefined') this.setAppUrlPrefix(state.appUrlPrefix);
         if (typeof(state.reloadFromDisk) !== 'undefined') this.setReloadFromDisk(state.reloadFromDisk);
@@ -572,9 +569,18 @@ var Hub = declare(null, {
         if (typeof(state.showgoals) !== 'undefined') this.studyManager.setGoalBoxVisibility(state.showgoals);
         if (typeof(state.selectionStyle) !== 'undefined') this.chartManager.setDefaultSelectionStyle(state.selectionStyle);
         if (typeof(state.OCA_checkForUpdates) !== 'undefined') this.setUpdateCheckMode(state.OCA_checkForUpdates);
+    },
 
+    /* Given a state description object of the kind returned by our
+     * `describeState` method, restore that state.
+     */
+    restoreState: function(state) {
+        this.restoreSettings(state);
         // Note: state.sidebar settings are handled in AppLayout.js
+        this.restoreContent(state);
+    },
 
+    restoreContent: function(state) {
         let treeLoading = Promise.resolve([]);
         if (typeof(state.trees) !== 'undefined') {
             treeLoading = this.repoManager.restoreState(state.trees);
