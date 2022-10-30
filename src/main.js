@@ -229,12 +229,11 @@ function construct(ISE_state) {
     return hub;
 }
 
-async function startup() {
+function startup() {
     const ISE_state = computeState();
     const hub = construct(ISE_state);
-    hub.restoreSettings(ISE_state);
-    await loadScripts();
-    hub.restoreContent(ISE_state);
+    hub.siblingScriptLoadingPromise = loadScripts();
+    hub.restoreState(ISE_state);
     hub.showCookieNoticeAsNeeded();
     hub.finalSetup();
 }

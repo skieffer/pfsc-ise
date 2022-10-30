@@ -453,7 +453,8 @@ var ContentManager = declare(null, {
      *
      * return: promise that resolves when the content has been loaded.
      */
-    openContentInPane: function(info, pane) {
+    openContentInPane: async function(info, pane) {
+        await this.hub.contentLoadingOkay();
         // Grab the specified info type.
         var type = info.type;
         // Get the pane setup method.

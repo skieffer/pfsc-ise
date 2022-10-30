@@ -93,6 +93,8 @@ var Hub = declare(null, {
 
     pdfjsURL: null,
 
+    siblingScriptLoadingPromise: null,
+
     agreementAcceptanceStorage: null,
     tosVersionAcceptedKey: 'pfsc:tosVersionAccepted',
     prpoVersionAcceptedKey: 'pfsc:prpoVersionAccepted',
@@ -209,6 +211,12 @@ var Hub = declare(null, {
 
         this.pfscExtInterface = pfscExtInterface;
         pfscExtInterface.hub = this;
+    },
+
+    /* Any code that wants to load content should await this, to ensure we are ready.
+     */
+    contentLoadingOkay: async function() {
+        await this.siblingScriptLoadingPromise;
     },
 
     getVersionStringForAboutDialog: function() {
