@@ -1,3 +1,10 @@
+## 25.1 (221030)
+
+Bug Fixes:
+
+* Reinstate synchronous signalling element. v25.0 inadvertently disrupted
+  signalling between PISE and the PBE. This restores it.
+
 ## 25.0 (221028)
 
 Features:
