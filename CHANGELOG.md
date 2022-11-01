@@ -1,3 +1,9 @@
+## 25.2 (221101)
+
+Enhancements:
+
+* Upgrade to `pfsc-pdf v3.1.0`.
+
 ## 25.1 (221030)
 
 Bug Fixes:
