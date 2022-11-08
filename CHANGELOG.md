@@ -2,7 +2,8 @@
 
 Enhancements:
 
-* Upgrade `dojo`, `pfsc-moose`, and `socket.io-client`.
+* Upgrade `dojo`, `pfsc-moose`, and `socket.io-client`
+  ([#2](https://github.com/proofscape/pfsc-ise/pull/2)).
 
 ## 25.2 (221101)
 
