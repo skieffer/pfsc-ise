@@ -5,8 +5,8 @@ To begin with,
 
 * You should be on the `main` branch.
 * All the changes you want to make it into the release should be committed.
-* You should update the `CHANGELOG.md` with an entry for the release you're about to
-  make, and commit it.
+* Ensure that `CHANGELOG.md` has a complete entry for the release you're about to
+  make. In particular, fill in the date for this entry and commit it.
 
 Now make a release branch, of the form `release/VERSION`. For example,
 if releasing version 22.11,
@@ -45,8 +45,12 @@ building docker images.
 
     $ git checkout main
 
-Bump the dev version number. For example, if the release tag was `v22.11`, then go
-into `package.json` and change the version to `22.12-dev`. Finally, do a commit:
+Bump the dev version number. For example, if the release tag was `v22.11`, then:
+
+* Go into `package.json` and change the version to `22.12-dev`.
+* In `CHANGELOG.md`, make an entry with heading `## 22.12 (------)`.
+
+Finally, do a commit:
 
     $ git add package.json
     $ git commit -m "Bump dev version"
