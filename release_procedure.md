@@ -52,7 +52,7 @@ Bump the dev version number. For example, if the release tag was `v22.11`, then:
 
 Finally, do a commit:
 
-    $ git add package.json
+    $ git add .
     $ git commit -m "Bump dev version"
 
 Finished!
