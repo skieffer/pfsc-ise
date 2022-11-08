@@ -1,3 +1,9 @@
+## 25.3 (------)
+
+Enhancements:
+
+* Upgrade `dojo`, `pfsc-moose`, and `socket.io-client`.
+
 ## 25.2 (221101)
 
 Enhancements:
