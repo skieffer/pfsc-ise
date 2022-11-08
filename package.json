@@ -23,18 +23,18 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "pfsc-moose": "^0.22.9",
     "ace-builds": "^1.4.8",
     "browser-peers": "^0.2.0",
-    "dijit": "^1.16.2",
-    "dojo-util": "^1.16.2",
-    "dojox": "^1.16.2",
+    "dijit": "^1.16.5",
+    "dojo-util": "^1.16.5",
+    "dojox": "^1.16.5",
     "dragula": "^3.7.3",
     "elkjs": "^0.8.1",
     "lru-cache": "^6.0.0",
     "mathjax": "^3.0.1",
     "nanobar": "^0.4.2",
-    "socket.io-client": "^4.4.1",
+    "pfsc-moose": "^0.22.10",
+    "socket.io-client": "^4.5.3",
     "uuid": "^8.3.2"
   }
 }
