@@ -329,7 +329,7 @@ var PdfManager = declare(null, {
      *   "web-fetch":   fetched from somewhere else on the web (with ACAO* header)
      *   "ext-fetch":   came from PBE, which had to fetch it from the Internet
      *   "ext-mem":     came from PBE, which had already fetched it, but not yet committed it to storage
-     *   "ext-cache":   came from PBE, which retrieved it from storge
+     *   "ext-cache":   came from PBE, which retrieved it from storage
      *   "proxy-fetch": fetched from the web by the server's proxy service
      *   "proxy-cache": came from proxy service, but was already in its PDF library
      */
