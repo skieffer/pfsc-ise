@@ -431,7 +431,9 @@ var PdfManager = declare(null, {
                             // cache the PDF info in memory, since access is _much_ faster.
                             mgr.pdfInfoByURL.set(url, info);
                             // Wait until after the loadingPromise resolves to store the PDF.
+                            console.debug('awaiting loading promise...');
                             loadingPromise.then(function() {
+                                console.debug('loading promise resolved');
                                 mgr.hub.pfscExtInterface.makeRequest("complete-delayed-pdf-storage", { url: url });
                             });
                             resolve(info);
