@@ -235,11 +235,13 @@ util.getRepoPart = moose.getRepoPart;
  *   we make the URL for the given libpath _as a file_.
  * @param sourceRow: when `isDir` is false, you may pass a positive integer
  *   here, naming a row in the source file you want to select.
+ * @param modIsTerm: when `isDir` is false, you may pass a boolean indicating
+ *   whether the module in which this item lives is a terminal module.
  *
  * @return: URL string, or null if the given libpath does not
  *   point to a known remote host.
  */
-util.libpath2remoteHostPageUrl = function(libpath, version, isDir, sourceRow) {
+util.libpath2remoteHostPageUrl = function(libpath, version, isDir, sourceRow, modIsTerm) {
     const lpParts = libpath.split('.');
     const host = lpParts[0];
     if (!['gh', 'bb'].includes(host)) {
@@ -250,17 +252,21 @@ util.libpath2remoteHostPageUrl = function(libpath, version, isDir, sourceRow) {
         gh: 'https://github.com',
         bb: 'https://bitbucket.org',
     }[host]);
-    urlParts.push(lpParts[1]); // user
+    urlParts.push(lpParts[1]); // owner
     urlParts.push(lpParts[2]); // repo
     urlParts.push(host === 'bb' ? 'src' : isDir ? 'tree' : 'blob');
-    urlParts.push(version === "WIP" ? 'master' : version);
+    urlParts.push(version === "WIP" ? 'main' : version);
     urlParts = urlParts.concat(lpParts.slice(3));
     if (!isDir) {
         let suffix = '.pfsc'
         if (sourceRow) {
             suffix += `#${host === 'gh' ? "L" : "lines-"}${sourceRow}`;
         }
-        urlParts[urlParts.length - 1] += suffix;
+        if (modIsTerm) {
+            urlParts[urlParts.length - 1] += suffix;
+        } else {
+            urlParts.push('__' + suffix);
+        }
     } else if (host === 'bb') {
         // BitBucket likes directories to end with a '/'
         urlParts.push('');

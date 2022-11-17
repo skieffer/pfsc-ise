@@ -332,17 +332,19 @@ export class BuildTreeManager extends TreeManager {
 
         if (ise.util.libpathIsRemote(item.libpath)) {
             let modpath = item.libpath;
-            let isDir = false;
             let sourceRow = null;
+            let modIsTerm;
             if (item.type === "MODULE") {
-                if (!item.terminal) {
-                    isDir = true;
-                }
+                modIsTerm = item.isTerminal;
             } else {
+                // Any item in the structure tree that is not a module, must be an entity
+                // defined within (and at the top level of) a module.
                 modpath = item.modpath;
                 sourceRow = item.sourceRow;
+                const parentItem = treeNode.tree.model.store.get(item.parent);
+                modIsTerm = parentItem.isTerminal;
             }
-            const url = ise.util.libpath2remoteHostPageUrl(modpath, version, isDir, sourceRow);
+            const url = ise.util.libpath2remoteHostPageUrl(modpath, version, false, sourceRow, modIsTerm);
             const host = modpath.startsWith('gh.') ? 'GitHub' : 'BitBucket';
             cm.addChild(new dojo.MenuSeparator());
             cm.addChild(new dojo.MenuItem({

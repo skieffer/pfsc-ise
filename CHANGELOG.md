@@ -1,6 +1,8 @@
 ## 25.4 (------)
 
-...
+Bug Fixes:
+
+* Repair "View at..." links in tree view context menus.
 
 ## 25.3 (221108)
 
