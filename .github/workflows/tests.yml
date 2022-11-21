@@ -82,9 +82,9 @@ jobs:
           unzip chromedriver_linux64.zip
           mv chromedriver /usr/local/bin/
       # -----------------------------------------
-      #- name: Deploy the containers
-      #  working-directory: deploy/${{ env.TEST_DEPLOY_DIR }}
-      #  run: docker compose -f mca-docker-compose.yml up -d
+      - name: Deploy the containers
+        working-directory: deploy/${{ env.TEST_DEPLOY_DIR }}
+        run: docker compose -f mca-docker-compose.yml up -d
       # -----------------------------------------
       - name: Run the Selenium tests
         working-directory: pfsc-manage
