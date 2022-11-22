@@ -97,8 +97,8 @@ jobs:
         working-directory: deploy/${{ env.TEST_DEPLOY_DIR }}
         run: docker compose -f mca-docker-compose.yml up -d
       # -----------------------------------------
-      - name: Check page source
-        run: curl http://localhost:7371
+      #- name: Check page source
+      #  run: curl http://localhost:7371
       # -----------------------------------------
       - name: Run the Selenium tests
         working-directory: pfsc-manage
