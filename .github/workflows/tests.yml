@@ -102,12 +102,16 @@ jobs:
       # -----------------------------------------
       - name: Run the Selenium tests
         working-directory: pfsc-manage
-        continue-on-error: true
+        #continue-on-error: true
         run: |
           source venv/bin/activate
           pytest tests/selenium/test_basic_run_01.py
       # -----------------------------------------
       - name: Store final screenshot
+        # Want previous step to be marked as failure if it fails,
+        # but we still want to do this step. So we use `if: always()`
+        # here instead of `continue-on-error: true` there.
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: sel_basic_run_01.png
