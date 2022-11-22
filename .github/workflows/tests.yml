@@ -105,3 +105,9 @@ jobs:
         run: |
           source venv/bin/activate
           pytest tests/selenium/test_basic_run_01.py
+      # -----------------------------------------
+      - name: Store final screenshot
+        uses: actions/upload-artifact@v2
+        with:
+          name: sel_basic_run_01.png
+          path: selenium_screenshots/TestBasicRun01.png
